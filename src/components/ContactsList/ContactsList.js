@@ -5,9 +5,7 @@ const ContactsList = ({ contacts, name }) => {
     return (      
       <div>
         <h1>Contacts</h1>
-        <ul>{contacts.map(contact => (
-            <li key={uuidv4()}>{name}</li>
-        ))}
+        <ul>{contacts.map(contact => {return <li key={uuidv4()}>{name}</li>;})}
         </ul>
       </div>
   );
