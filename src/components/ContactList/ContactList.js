@@ -1,38 +1,36 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
+import ListItem from '../ListItem';
 import styles from './ContactList.module.scss';
 
 class ContactList extends Component {
   render() {
+    const { visibleContacts, onDeleteContact } = this.props;
     return (
       <ul className={styles.phoneBookList}>
-        {this.props.visibleContacts.map(({ id, name, number }) => (
-          <li key={id} id={id}>
-            <span className={styles.contact}>
-              {name}:{number}
-            </span>
-            <button
-              onClick={() => this.props.onDeleteContact(id)}
-              type="button"
-            >
-              Delete
-            </button>
-          </li>
-        ))}
+        {visibleContacts.map(({ id, name, number }) => { return (
+          <ListItem
+            key={id}
+            id={id}
+            name={name}
+            number={number}
+            onDeleteItem={onDeleteContact}
+          />
+        ); })}
       </ul>
     );
   };
-}
+};
+     
+ContactList.defaultProps = {
+  visibleContacts: [],
+};
 
 ContactList.propTypes = {
-  visibleContacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
   onDeleteContact: PropTypes.func.isRequired,
+  visibleContacts: PropTypes.arrayOf(
+    PropTypes.shape({ id: PropTypes.string.isRequired }),
+  ),
 };
 
 export default ContactList;
