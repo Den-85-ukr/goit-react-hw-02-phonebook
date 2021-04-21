@@ -4,14 +4,14 @@ import styles from './ListItem.module.scss';
 
 class ListItem extends Component {
   render() {
-    const { id, name, number, onDeleteItem } = this.props;
+    const { name, number, onDeleteItem } = this.props;
     return (
       <li>
       <span className={styles.contact}>
       {name}:{number}
       </span>
       <button
-      onClick={() => onDeleteItem(id)}
+      onClick={onDeleteItem}
       type="button"
       >
       Delete
@@ -21,10 +21,9 @@ class ListItem extends Component {
 };
 
 ListItem.propTypes = {
-  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
-  onDeleteContact: PropTypes.func.isRequired,
+  onDeleteItem: PropTypes.func.isRequired,
 };
 
 export default ListItem;

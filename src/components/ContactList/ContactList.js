@@ -14,7 +14,7 @@ class ContactList extends Component {
             id={id}
             name={name}
             number={number}
-            onDeleteItem={onDeleteContact}
+            onDeleteItem={()=>onDeleteContact(id)}
           />
         ); })}
       </ul>
